@@ -43,33 +43,38 @@ section{padding:var(--sec) 0}
 header{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top,0);transition:background .3s,box-shadow .3s}
 header.solid{background:rgba(250,247,241,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-.brand{font:500 1.6rem var(--serif);text-decoration:none;color:#fff;letter-spacing:.01em;transition:color .3s}
-.brand span{color:var(--brass2)}
-header.solid .brand{color:var(--green)}
-header.solid .brand span{color:var(--brass)}
+.brand{font:500 1.6rem var(--serif);text-decoration:none;color:var(--green);letter-spacing:.01em;transition:color .3s}
+.brand span{color:var(--brass)}
 .menu{display:flex;gap:34px;align-items:center;list-style:none;padding:0}
-.menu a{text-decoration:none;font-weight:500;font-size:.95rem;color:#fff;transition:color .3s,opacity .2s}
+.menu a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink);transition:color .3s,opacity .2s}
 .menu a:hover{opacity:.7}
 header.solid .menu a{color:var(--ink)}
 .menu .btn{min-height:44px;padding:0 22px;color:var(--green)!important;opacity:1!important}
-.burger{display:none;background:none;border:0;width:48px;height:48px;cursor:pointer;color:#fff}
-header.solid .burger{color:var(--green)}
+.burger{display:none;background:none;border:0;width:48px;height:48px;cursor:pointer;color:var(--green)}
 .burger i{display:block;width:24px;height:2px;background:currentColor;margin:6px auto;transition:transform .3s,opacity .3s}
 .open .burger i:nth-child(1){transform:translateY(8px) rotate(45deg)}
 .open .burger i:nth-child(2){opacity:0}
 .open .burger i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 
 /* hero */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:0 0 clamp(56px,9vh,110px);background:#16302a url(assets/hero-poster.webp) center/cover;color:#fff;overflow:hidden}
-.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 40%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,48,42,.88) 0%,rgba(22,48,42,.55) 48%,rgba(22,48,42,.08) 100%),linear-gradient(0deg,rgba(22,48,42,.6),transparent 45%)}
-.hero .wrap{position:relative;z-index:2;width:100%}
-.kicker{font:500 .82rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);margin-bottom:22px}
-.hero h1{font-size:clamp(2.7rem,7vw,5.8rem);max-width:12ch;font-weight:400}
-.hero p{max-width:44ch;margin-top:24px;font-size:1.2rem;color:rgba(255,255,255,.88)}
-.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
-.hero .kicker,.hero h1,.hero p,.hero .actions{opacity:0;transform:translateY(22px);animation:in .9s cubic-bezier(.2,.7,.2,1) forwards}
-.hero h1{animation-delay:.15s}.hero p{animation-delay:.3s}.hero .actions{animation-delay:.45s}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:calc(76px + clamp(32px,6vh,72px)) 0 clamp(64px,10vh,120px);background:#e9e2d3 url(assets/hero-poster.webp) 70% 40%/cover no-repeat;color:var(--green);overflow:hidden;isolation:isolate}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 40%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(90deg,rgba(250,247,241,.95) 0%,rgba(250,247,241,.86) 28%,rgba(250,247,241,.45) 52%,rgba(250,247,241,.06) 76%,rgba(250,247,241,0) 100%),
+  linear-gradient(180deg,rgba(250,247,241,.6) 0,rgba(250,247,241,0) 170px)}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:90px;z-index:-1;background:linear-gradient(0deg,var(--ivory),rgba(250,247,241,0))}
+.hero .wrap{position:relative;width:100%}
+.hero-copy{max-width:640px}
+.kicker{display:flex;align-items:center;gap:14px;font:600 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#7a5d28;margin-bottom:26px}
+.kicker::before{content:"";width:40px;height:1px;background:currentColor}
+.hero h1{font-size:clamp(2.6rem,6.2vw,5.4rem);max-width:13ch;font-weight:400;color:var(--green)}
+.hero h1 em{font-style:italic;color:var(--green2)}
+.hero p{max-width:42ch;margin-top:26px;font-size:clamp(1.05rem,1.5vw,1.22rem);color:#33433c}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+.btn-line{border-color:rgba(22,48,42,.38);color:var(--green)}
+.btn-line:hover{background:rgba(22,48,42,.07);border-color:var(--green)}
+.hero .kicker,.hero h1,.hero p,.hero .actions{opacity:0;transform:translateY(18px);animation:in 1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .kicker{animation-delay:.1s}.hero h1{animation-delay:.25s}.hero p{animation-delay:.42s}.hero .actions{animation-delay:.58s}
 @keyframes in{to{opacity:1;transform:none}}
 
 /* about */
@@ -128,6 +133,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brass);b
 footer{background:var(--green);color:rgba(255,255,255,.7);padding:48px 0 calc(48px + env(safe-area-inset-bottom,0))}
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
 footer .brand{color:#fff}
+footer .brand span{color:var(--brass2)}
 .fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0));z-index:40;width:58px;height:58px;border-radius:50%;background:#25a35a;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .25s}
 .fab:hover{transform:scale(1.07)}
 .fab svg{width:30px;height:30px;fill:#fff}
@@ -142,13 +148,25 @@ footer .brand{color:#fff}
   .open .menu{transform:none}
   .burger{position:relative;z-index:60}
   .open .burger{color:#fff}
+  .open .brand{color:#fff;position:relative;z-index:60}
   .split,.faq-wrap{grid-template-columns:1fr}
   .photo::before{inset:16px -10px -16px 10px}
   .grid,.diff .cols{grid-template-columns:1fr}
   .gal{grid-template-columns:1fr 1fr;grid-template-rows:260px 180px 180px}
   .gal figure:first-child{grid-column:span 2;grid-row:auto}
-  .hero video{object-position:72% 40%}
-  .hero::after{background:linear-gradient(0deg,rgba(22,48,42,.92) 0%,rgba(22,48,42,.55) 55%,rgba(22,48,42,.25) 100%)}
+  .hero{align-items:flex-end;padding:calc(76px + 24px) 0 calc(88px + env(safe-area-inset-bottom,0));background-position:90% 25%}
+  .hero video{object-position:90% 25%}
+  .kicker{font-size:.7rem;letter-spacing:.14em;gap:10px;margin-bottom:18px}
+  .kicker::before{width:24px}
+  .hero h1{font-size:clamp(2.2rem,10vw,3rem);max-width:none}
+  .hero p{margin-top:16px;font-size:1rem}
+  .actions{margin-top:24px;gap:10px}
+  .actions .btn{min-height:48px}
+  .hero::before{background:
+    linear-gradient(0deg,rgba(250,247,241,.97) 0%,rgba(250,247,241,.93) 40%,rgba(250,247,241,.4) 62%,rgba(250,247,241,0) 80%),
+    linear-gradient(180deg,rgba(250,247,241,.55) 0,rgba(250,247,241,0) 120px)}
+  .hero::after{display:none}
+  .actions .btn{flex:1 1 100%}
   .facts{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
@@ -174,14 +192,16 @@ footer .brand{color:#fff}
 
 <main>
 <section class="hero" aria-label="Apresentação">
-  <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/hero-poster.webp" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/hero-poster.webp" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"><source src="assets/hero.mp4" type="video/mp4"></video>
   <div class="wrap">
-    <div class="kicker">Odontologia • Cuidado • Confiança</div>
-    <h1>Seu sorriso merece um cuidado especial.</h1>
-    <p>Tecnologia, conforto e atendimento personalizado para transformar sua experiência no dentista.</p>
-    <div class="actions">
-      <a class="btn btn-brass" href="#contato" data-wa>Agende sua avaliação</a>
-      <a class="btn btn-ghost" href="#tratamentos">Conheça os tratamentos</a>
+    <div class="hero-copy">
+      <div class="kicker">Odontologia • Cuidado • Confiança</div>
+      <h1>Seu sorriso merece um <em>cuidado especial.</em></h1>
+      <p>Tecnologia, conforto e atendimento personalizado para transformar sua experiência no dentista.</p>
+      <div class="actions">
+        <a class="btn btn-green" href="#contato" data-wa>Agende sua avaliação</a>
+        <a class="btn btn-line" href="#tratamentos">Conheça os tratamentos</a>
+      </div>
     </div>
   </div>
 </section>
